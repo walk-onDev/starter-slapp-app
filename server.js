@@ -34,7 +34,7 @@ slapp.message('help', ['mention', 'direct_message'], (msg) => {
   msg.say(HELP_TEXT)
 })
 
-slap.message('echo', ['mention', 'direct_message'], (msg) => {
+slapp.message('echo', ['mention', 'direct_message'], (msg) => {
   msg.say('this is an example app created using slapp by walk-onDev')
 })
 
