@@ -3,6 +3,7 @@
 const express = require('express')
 const Slapp = require('slapp')
 const morgan = require('morgan')
+const bodyParser = require('body-parser')
 const ConvoStore = require('slapp-convo-beepboop')
 const Context = require('slapp-context-beepboop')
 
