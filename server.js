@@ -2,6 +2,7 @@
 
 const express = require('express')
 const Slapp = require('slapp')
+const morgan = require('morgan')
 const ConvoStore = require('slapp-convo-beepboop')
 const Context = require('slapp-context-beepboop')
 
@@ -15,6 +16,32 @@ var slapp = Slapp({
   context: Context()
 })
 
+var app = express()
+app.use(morgan('dev'))
+
+app.route('/messagemany')
+
+app.route('/beepboop')
+  .get(function (req, res) {
+    res.sendStatus(200)
+  })
+  .post(bodyParser.urlencoded({ extended: true }), function (req, res) {
+    if (req.body.token !== VERIFY_TOKEN) {
+      return res.sendStatus(401)
+    }
+
+    var message = 'boopbeep'
+
+    // Handle any help requests
+    if (req.body.text === 'help') {
+      message = "Sorry, I can't offer much help, just here to beep and boop"
+    }
+
+    res.json({
+      response_type: 'ephemeral',
+      text: message
+    })
+  })
 
 var HELP_TEXT = `
 I will respond to the following messages:
@@ -31,7 +58,7 @@ slapp.message('help', ['mention', 'direct_message'], (msg) => {
 })
 
 // attach Slapp to express server
-var server = slapp.attachToExpress(express())
+var server = slapp.attachToExpress(app)
 
 // start http server
 server.listen(port, (err) => {
