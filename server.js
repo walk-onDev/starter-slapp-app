@@ -44,15 +44,13 @@ slapp.command('/messagemany', '(.*)', (msg, text, question) => {
 
 slapp.route('handleWhichChannels', (msg, state) => {
 
-
-    msg.say('it worked')
-    msg.say('body' + state.message)
-    msg.say('channels' + msg.channelsMentioned())
-    msg.say({
-      text: state.message,
-        channel: msg.channelsMentioned()[0]
-      })
-
+    var arr = msg.channelsMentioned
+    for (var i = 0, len = arr.length; i < len; i++) {
+        msg.say({
+        text: state.message,
+          channel: arr[i]
+        })
+    }
 })
 
 // attach Slapp to express server
