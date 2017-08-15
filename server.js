@@ -39,20 +39,20 @@ slapp.command('/messagemany', '(.*)', (msg, text, question) => {
   // text = create Who is in? 
   // question = Who is in? 
   
-  msg.say('Which channel(s) would you like to post to?').route('handleWhichChannels', text)
+  msg.say('Which channel(s) would you like to post to?').route('handleWhichChannels',{ message: text })
 })
 
-slapp.route('handleWhichChannels', (msg, text) => {
+slapp.route('handleWhichChannels', '(.*)' , (msg, channels, state) => {
   
-  var channels = msg.channelsMentioned()
-  if(channels)
+  var chns = msg.channelsMentioned()
+  if(chns)
   {
     msg.say('it worked')
-    msg.say(text)
-    msg.say(msg)
+    msg.say('body' + state.message)
+    msg.say('channels' + channels)
     msg.say({
-      text: text,
-        channel: msg
+      text: state.message,
+        channel: channels
       })
   }
 })
