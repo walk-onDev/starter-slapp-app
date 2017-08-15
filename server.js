@@ -39,15 +39,19 @@ slapp.command('/messagemany', '(.*)', (msg, text, question) => {
   // text = create Who is in? 
   // question = Who is in? 
   
-  msg.say({
-    text: text,
-      channel: '#random'
-      })
+  msg.say('Which channel(s) would you like to post to?').route('handleWhichChannels', text)
 })
 
-slapp.route('handleWhichChannels', (msg, state) => {
-  chat.post
-  msg.say('hello ${state.response}')
+slapp.route('handleWhichChannels', (msg, text) => {
+  
+  var channels = msg.channelsMentioned()
+  if(channels)
+  {
+    msg.say({
+      text: text,
+        channel: msg
+      })
+  }
 })
 
 // attach Slapp to express server
