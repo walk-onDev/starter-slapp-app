@@ -44,7 +44,7 @@ slapp.command('/messagemany', '(.*)', (msg, text, question) => {
 
 slapp.route('handleWhichChannels', (msg, state) => {
 
-    var arr = msg.channelsMentioned
+    var arr = msg.channelsMentioned()
     for (var i = 0, len = arr.length; i < len; i++) {
         msg.say({
         text: state.message,
