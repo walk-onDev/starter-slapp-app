@@ -48,6 +48,8 @@ slapp.route('handleWhichChannels', (msg, text) => {
   if(channels)
   {
     msg.say('it worked')
+    msg.say(text)
+    msg.say(msg)
     msg.say({
       text: text,
         channel: msg
