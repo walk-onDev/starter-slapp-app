@@ -42,14 +42,15 @@ slapp.command('/messagemany', '(.*)', (msg, text, question) => {
   msg.say('Which channel(s) would you like to post to?').route('handleWhichChannels',{ message: text })
 })
 
-slapp.route('handleWhichChannels', '(.*)' , (msg, channels, state) => {
+slapp.route('handleWhichChannels', (msg, state) => {
+
 
     msg.say('it worked')
     msg.say('body' + state.message)
-    msg.say('channels' + channels)
+    msg.say('channels' + msg.channelsMentioned())
     msg.say({
       text: state.message,
-        channel: channels
+        channel: msg.channelsMentioned()[0]
       })
 
 })
