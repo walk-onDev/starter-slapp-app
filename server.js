@@ -34,17 +34,19 @@ slapp.message('help', ['mention', 'direct_message'], (msg) => {
 })
 
 
-slapp.command('/messagemany', 'create (.*)', (msg, text, question) => {
+slapp.command('/messagemany', '(.*)', (msg, text, question) => {
   // if "/inorout create Who is in?" is received: 
   // text = create Who is in? 
   // question = Who is in? 
-  var state ={
-    response: text
-  }
-  msg.say('this worked').route('handleWhichChannels', state)
+  
+  msg.say({
+    text: text,
+      channel: '#random'
+      })
 })
 
 slapp.route('handleWhichChannels', (msg, state) => {
+  chat.post
   msg.say('hello ${state.response}')
 })
 
