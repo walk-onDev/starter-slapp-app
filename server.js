@@ -33,11 +33,16 @@ slapp.message('help', ['mention', 'direct_message'], (msg) => {
   msg.say(HELP_TEXT)
 })
 
+
 slapp.command('/messagemany', 'create (.*)', (msg, text, question) => {
   // if "/inorout create Who is in?" is received: 
   // text = create Who is in? 
   // question = Who is in? 
   msg.say('this worked')
+})
+
+slapp.route('handleWhichChannels', (msg) => {
+  msg.say('hello')
 })
 
 // attach Slapp to express server
