@@ -54,8 +54,8 @@ slapp.route('handleWhichChannels', (msg, state) => {
       }
       return
     }
-    msg.say('Invalid response. Please give me a list of channel(s) to message.')
-}).route('handleWhichChannels', (msg, state))
+    msg.say('Invalid response. Please give me a list of channel(s) to message.').route('handleWhichChannels', state)
+})
 
 // attach Slapp to express server
 var server = slapp.attachToExpress(express())
