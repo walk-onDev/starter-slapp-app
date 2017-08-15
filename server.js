@@ -38,11 +38,14 @@ slapp.command('/messagemany', 'create (.*)', (msg, text, question) => {
   // if "/inorout create Who is in?" is received: 
   // text = create Who is in? 
   // question = Who is in? 
-  msg.say('this worked')
+  var state ={
+    response: text
+  }
+  msg.say('this worked').route('handleWhichChannels', state)
 })
 
-slapp.route('handleWhichChannels', (msg) => {
-  msg.say('hello')
+slapp.route('handleWhichChannels', (msg, state) => {
+  msg.say('hello ${state.response}')
 })
 
 // attach Slapp to express server
