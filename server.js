@@ -18,7 +18,7 @@ var slapp = Slapp({
 var HELP_TEXT = `
 I will respond to the following messages:
 \`help\` - to see this message.
-\The only tool available in this app right now is the messagemany slash command 10 second timeout
+\The only tool available in this app right now is the messagemany slash command 60 second timeout
 `;
 
 //*********************************************
