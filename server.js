@@ -18,7 +18,7 @@ var slapp = Slapp({
 var HELP_TEXT = `
 I will respond to the following messages:
 \`help\` - to see this message.
-\The only tool available in this app right now is the messagemany slash command 1 second timeout
+\The only tool available in this app right now is the messagemany slash command 10 second timeout
 `;
 
 //*********************************************
@@ -31,7 +31,7 @@ slapp.message('help', ['mention', 'direct_message'], (msg) => {
 });
 
 slapp.command('/messagemany', '(.*)', (msg, text, question) => {
-  msg.say('Which channel(s) would you like to post to?').route('handleWhichChannels',{ message: text, requested: Date.now() });
+  msg.respond('Which channel(s) would you like to post to?').route('handleWhichChannels',{ message: text, requested: Date.now() });
 });
 
 slapp.route('handleWhichChannels', (msg, state) => {
@@ -40,7 +40,7 @@ slapp.route('handleWhichChannels', (msg, state) => {
       msg.say('Conversation timed out')
       return;
     }
-    
+
     var arr = msg.channelsMentioned();
   
     if (arr.length === 0) {
