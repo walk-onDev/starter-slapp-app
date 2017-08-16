@@ -37,7 +37,7 @@ slapp.command('/messagemany', '(.*)', (msg, text, question) => {
 slapp.route('handleWhichChannels', (msg, state) => {
     var elapsed = Date.now() - state.requested;
     if (elapsed / 1000 > 10) {
-      msg.say('Conversation timed out')
+      msg.respond('Conversation timed out')
       return;
     }
 
