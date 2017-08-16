@@ -18,7 +18,7 @@ var slapp = Slapp({
 var HELP_TEXT = `
 I will respond to the following messages:
 \`help\` - to see this message.
-\`The only tool available in this app right now is the messagemany slash command
+\The only tool available in this app right now is the messagemany slash command
 `;
 
 //*********************************************
@@ -32,6 +32,7 @@ slapp.message('help', ['mention', 'direct_message'], (msg) => {
 
 slapp.command('/messagemany', '(.*)', (msg, text, question) => {
   msg.say('Which channel(s) would you like to post to?').route('handleWhichChannels',{ message: text }, 60);
+  return;
 });
 
 slapp.route('handleWhichChannels', (msg, state) => {
