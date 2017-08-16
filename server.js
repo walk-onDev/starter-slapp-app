@@ -31,14 +31,14 @@ slapp.message('help', ['mention', 'direct_message'], (msg) => {
 });
 
 slapp.command('/messagemany', '(.*)', (msg, text, question) => {
-  msg.say('Which channel(s) would you like to post to?').route('handleWhichChannels',{ message: text });
+  msg.say('Which channel(s) would you like to post to?').route('handleWhichChannels',{ message: text }, 60);
 });
 
 slapp.route('handleWhichChannels', (msg, state) => {
     var arr = msg.channelsMentioned();
 
     if (arr.length === 0) {
-      msg.say('Invalid response. Please give me a list of channel(s) to message.').route('handleWhichChannels', state);
+      msg.say('Invalid response. Please give me a list of channel(s) to message.').route('handleWhichChannels', state, 60);
       return;
     }
 
