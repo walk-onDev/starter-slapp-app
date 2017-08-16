@@ -31,16 +31,20 @@ slapp.message('help', ['mention', 'direct_message'], (msg) => {
 });
 
 slapp.command('/messagemany', '(.*)', (msg, text, question) => {
-  msg.say('Which channel(s) would you like to post to?').route('handleWhichChannels',{ message: text }, 1);
-  return;
+  msg.say('Which channel(s) would you like to post to?').route('handleWhichChannels',{ message: text, requested: Date.now() });
 });
 
 slapp.route('handleWhichChannels', (msg, state) => {
-    var arr = msg.channelsMentioned();
-
-    if (arr.length === 0) {
-      msg.say('Invalid response. Please give me a list of channel(s) to message.').route('handleWhichChannels', state, 1);
+    var elapsed = Date.now() - state.requested;
+    if (elapsed / 1000 > 10) {
+      msg.say('Conversation timed out')
       return;
+    }
+    
+    var arr = msg.channelsMentioned();
+  
+    if (arr.length === 0) {
+      msg.say('Invalid response. Please give me a list of channel(s) to message.').route('handleWhichChannels', state);
     }
 
     for (var i = 0; i < arr.length; i++) {
