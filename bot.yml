@@ -1,4 +1,4 @@
-name: slappbot
-description: ☝️☝️ Check out the README ☝️☝️ in the repo for setup instructions. By the way, this is just the description in the bot.yml file - feel free to change it 😉
+name: slack-tools-bot
+description: Proof of concept app which provides a slash command to message multiple channels
 avatar: .beepboop/avatar.png
 # To learn everything supported in the bot.yml file, visit https://beepboophq.com/docs/article/bot-yml
